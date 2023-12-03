@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Vazir";
+    font-weight: 900;
+    font-style: normal;
+    src: url(../Fonts/Vazir-Black-FD-WOL.woff);
+    src: url(../Fonts/Vazir-Black-FD-WOL.woff2);
+}
+
+@font-face {
+    font-family: "Vazir";
+    font-weight: 400;
+    font-style: normal;
+    src: url(../Fonts/Vazir-FD-WOL.woff);
+    src: url(../Fonts/Vazir-FD-WOL.woff2);
+}
+
+@font-face {
+    font-family: "Vazir";
+    font-weight: 500;
+    font-style: normal;
+    src: url(../Fonts/Vazir-Medium-FD-WOL.woff);
+    src: url(../Fonts/Vazir-Medium-FD-WOL.woff2);
+}

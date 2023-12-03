@@ -1,0 +1,23 @@
+@import url(./fonts.css);
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: "Vazir";
+}
+
+ul {
+    list-style: none;
+}
+
+
+:root {
+    --main-backgroundColor: #C4DEF7;
+}
