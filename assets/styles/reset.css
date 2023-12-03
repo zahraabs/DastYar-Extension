@@ -1,23 +1,34 @@
-@import url(./fonts.css);
-
 *,
 *::after,
 *::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
+   
 }
 
 body {
     font-family: "Vazir";
+    direction: rtl;
 }
 
-ul {
+ul , li , a {
+    text-decoration: none;
     list-style: none;
 }
 
-
 :root {
-    --main-backgroundColor: #C4DEF7;
+    --container-color: #C4DEF7;
+    --primary-color : #fff;
+    --checkbox-color : 
+    #cef0d9;
+    --time-color : #2d75f7 ;
+    --search-color:#3d518f;
+    --secondary-color : 
+    #f3f4f6;
+    --temp-color : #a5a7b5;
+    --border-radius : 24px;
+    --head-fontsize : 1.5rem;
+    --head-fontweight : bold;
+    --gap : 16px;
 }
