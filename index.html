@@ -28,7 +28,7 @@
           <div class="todo__task">
             <div>
             <input type="checkbox" name="task" id="task">
-            <label for="task">کار شماره 1 من</label>
+            <label for="task" class="todo__label">کار شماره 1 من</label>
         </div>
         <div>
             <a href="#" class="todo-main__icon"><i class="fas fa-edit "></i></a>
@@ -100,7 +100,43 @@
           </div>
         </div>
       </section>
-      <section class="container__left"></section>
+      <section class="time-weather">
+        <div class="time">
+          <p class="time__clock">22:31</p>
+          <p class="time-date__shamsi">11 آذر</p>
+          <div class="time-date__division">
+          <p class="time-date__ghamari">1445/جمادی الاول/18</p>
+          <p>2 / Dec /2023</p>
+        </div>
+        <div class="time__selection">
+          <select name="timer" id="timer">
+            <option value="timer" selected>تایمر</option>
+          </select> 
+           <select name="oghat" id="oghat">
+            <option value="oghat" selected>اوقات شرعی</option>
+          </select>
+        </div>
+        </div>
+        <div class="weather">
+          <div class="weather-temp__division">
+            <p class="weather-temp__temperature"><sup>° </sup>12</p>
+            <i class="	fas fa-cloud-rain weather-temp__icon"></i>
+          </div> 
+             <div class="weather-temp__division">
+            <p class="weather-temp__text">
+            بس ناجوانمردانه سرد
+            </p>
+            <i class="	far fa-snowflake weather-temp__icon"></i>
+          </div>
+          <div class="weather-temp__division weather-temp--size">
+            <p>13<sup>°</sup>حداکثر.</p>  
+             <p>12<sup>°</sup>حداقل</p> 
+          </div>
+          <select name="prediction" id="prediction">
+            <option value="prediction" selected>پیش بینی</option>
+          </select> 
+        </div>
+      </section>
     </div>
   </body>
 </html>

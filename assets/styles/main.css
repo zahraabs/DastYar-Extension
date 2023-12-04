@@ -16,7 +16,7 @@
 
 /* todo */
 .todo,
-.container__left {
+.time-weather {
     width: 100%;
     height: 80vh;
     background-color: var(--primary-color);
@@ -55,8 +55,15 @@
 }
 
 .todo__task{
+    padding: 5px;
     display: flex;
     justify-content: space-between;
+    border: 1px solid var(--temp-color);
+    border-radius: 12px;
+}
+
+.todo__label{
+    color: var(--search-color);
 }
 
 .todo-main__icon {
@@ -178,11 +185,107 @@ display: inline-block;
     align-items: center;
     text-align: center;
     font-size: 18px;
-    color: black;
+    color: var(--search-color);
 }
 
-/* .container__left {
-    width: 100%;
-    height: 90vh;
-    background-color: var(--primary-color);
-} */
+/* time-weather */
+.time-weather{
+    height: 45vh;
+    display: flex;
+}
+.time ,.weather{
+    width: 50%;
+    height: 60%;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--temp-color);
+}
+
+.time{
+    border-left: 1px solid var(--temp-color);
+}
+
+.time__clock, .weather-temp__temperature{
+    font-size: 28px;
+    font-weight: 900;
+}
+.time__clock{
+    color: #266df7 ;
+}
+
+.time-date__shamsi ,.weather-temp__text{
+    font-weight: 700;
+    color: var(--search-color);
+}
+.time-date__division ,.weather-temp__division{
+    display: flex;
+    justify-content: space-between;
+    color: var(--temp-color);
+  
+}
+
+.time-date__division{
+    font-size: 10px;
+}
+.time-date__ghamari{
+    width: 40%;
+    position: relative;
+}
+
+.time-date__ghamari::after{
+    content: "";
+    width: 1px;
+    height: 10px;
+    background-color: var(--temp-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.time__selection {
+    display: flex;
+    align-items: center;
+}
+
+#timer , #oghat, #prediction {
+    padding:2px 6px;
+    border: 1px solid var(--temp-color);
+    border-radius: var(--border-radius);
+    /* font-size: 14px; */
+}
+#timer{
+    width:40% ;
+}
+
+#oghat{
+    width: 60%;
+}
+
+.weather{
+    width: 50%;
+    height: 60%;
+    border-bottom: 1px solid var(--temp-color);
+}
+
+.weather-temp__division{
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-temp__temperature{
+padding-left: var(--gap);
+}
+
+.weather-temp__icon{
+    color: #266df7;
+}
+
+.weather-temp__text ,.weather-temp--size{
+    font-size: 12px;
+    text-wrap: nowrap;
+}
+
+.weather-temp--size{
+    margin: 13px 0;
+}
+
