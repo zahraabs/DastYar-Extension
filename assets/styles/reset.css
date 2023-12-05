@@ -10,6 +10,7 @@
 body {
     font-family: "Vazir";
     direction: rtl;
+    background-color: var(--container-color);
 }
 
 ul , li , a {
@@ -27,8 +28,8 @@ ul , li , a {
     --secondary-color : 
     #f3f4f6;
     --temp-color : #a5a7b5;
-    --border-radius : 24px;
+    --border-radius : 14px;
     --head-fontsize : 1.5rem;
     --head-fontweight : bold;
-    --gap : 16px;
+    --gap : 12px;
 }

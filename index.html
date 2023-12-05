@@ -26,7 +26,7 @@
 
         <main class="todo__main">
           <div class="todo__task">
-            <div>
+            <div class="todo__division">
             <input type="checkbox" name="task" id="task">
             <label for="task" class="todo__label">کار شماره 1 من</label>
         </div>
@@ -62,11 +62,16 @@
           <div class="programs__row">
             <div class="programs__item programs__item--more">
               <i class="fa fa-th" aria-hidden="true"></i>
-              <p>دم دستی</ح>
+              <p>دم دستی</p>
             </div>
-            <div class="programs__item">
-               <i class="fas fa-plus programs__icon"></i>
-            </div>
+            <a
+              class="programs__item programs__link"
+              href="https://www.shab.ir/"
+              target="”_blank”"
+            >
+              <img src="./assets/images/shab.ico" alt="shab" class="programs__img"/>
+              <p>شب</p>
+            </a>
             <div class="programs__item">
                <i class="fas fa-plus programs__icon"></i>
             </div>
@@ -138,5 +143,7 @@
         </div>
       </section>
     </div>
+
+    <script src="./assets/scripts/todo.js"></script>
   </body>
 </html>
