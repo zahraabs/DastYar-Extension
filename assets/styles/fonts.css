@@ -2,7 +2,7 @@
     font-family: "Vazir";
     font-weight: 900;
     font-style: normal;
-    src: url(../Fonts/Vazir-Black-FD-WOL.woff);
+    src: url(../Fonts/Vazir-Black-FD-WOL.woff) format("woff");
     src: url(../Fonts/Vazir-Black-FD-WOL.woff2);
 }
 

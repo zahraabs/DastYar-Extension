@@ -1,9 +1,13 @@
 "use strict";
+const toDoForm = document.querySelector(".todo-form");
 const toDoInput = document.querySelector(".todo-form__input");
 const newToDo = document.querySelector(".todo-form__icon");
 const list = document.querySelector(".todo__list");
 
-newToDo.addEventListener("click", addItem);
+showUnComplete();
+
+toDoForm.addEventListener("submit", addItem);
+list.addEventListener("click", icons);
 
 function addItem(e) {
   e.preventDefault();
@@ -19,6 +23,20 @@ function addItem(e) {
   toDoInput.focus();
 }
 
+function icons(e) {
+  e.stopPropagation();
+  if (e.target.nodeName === "I" && e.target.classList.contains("fa-trash-alt")) {
+    console.log("delete");
+    deleteItem(e.target.parentElement.parentElement.parentElement.dataset.id);
+        e.target.parentElement.parentElement.parentElement.remove();
+  // } else if(e.target.classList.contains("fa-edit")) {
+  //   editItem(e.target);
+  // }else if (e.target.nodeName === "INPUT") {
+  //   console.log("input");
+  //   complete(e.target);
+}
+}
+
 function addToStorage(text) {
   var currentNames = oldItems();
   var date = new Date();
@@ -28,7 +46,7 @@ function addToStorage(text) {
     isDone: false,
   };
 
-  currentNames.push(newItem);
+  currentNames.unshift(newItem);
   localStorage.setItem("names", JSON.stringify(currentNames));
 }
 
@@ -62,3 +80,28 @@ function showUnComplete() {
     }
   }
 }
+
+function deleteItem(id) {
+  var old = oldItems();
+
+  for (var i = 0; i < old.length; i++) {
+      if (old[i].id == id) {
+          old.splice(i, 1);
+      }
+
+  }
+  localStorage.setItem("names", JSON.stringify(old))
+}
+
+// function complete(element) {
+//   var old = oldItems();
+//   for (var i = 0; i < old.length; i++) {
+//       if (old[i].id == element.parentElement.parentElement.dataset.id) {
+//           old[i].isDone = !old[i].isDone;
+//       }
+//   }
+//   localStorage.setItem("names", JSON.stringify(old));
+
+//   // showCompleteList();
+//   showUnComplete();
+// }
