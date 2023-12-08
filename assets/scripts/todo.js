@@ -2,12 +2,15 @@
 const toDoForm = document.querySelector(".todo-form");
 const toDoInput = document.querySelector(".todo-form__input");
 const newToDo = document.querySelector(".todo-form__icon");
-const list = document.querySelector(".todo__list");
+const todoList = document.querySelector(".todo__list");
+const doneList = document.querySelector(".done__list");
 
 showUnComplete();
+showCompleteList();
 
 toDoForm.addEventListener("submit", addItem);
-list.addEventListener("click", icons);
+todoList.addEventListener("click", icons);
+doneList.addEventListener("click", icons);
 
 function addItem(e) {
   e.preventDefault();
@@ -26,14 +29,12 @@ function addItem(e) {
 function icons(e) {
   e.stopPropagation();
   if (e.target.nodeName === "I" && e.target.classList.contains("fa-trash-alt")) {
-    console.log("delete");
     deleteItem(e.target.parentElement.parentElement.parentElement.dataset.id);
         e.target.parentElement.parentElement.parentElement.remove();
   // } else if(e.target.classList.contains("fa-edit")) {
   //   editItem(e.target);
-  // }else if (e.target.nodeName === "INPUT") {
-  //   console.log("input");
-  //   complete(e.target);
+  }else if (e.target.nodeName === "INPUT") {
+    complete(e.target);
 }
 }
 
@@ -63,10 +64,10 @@ function oldItems() {
 
 function showUnComplete() {
   var old = oldItems();
-  list.innerHTML = "";
+  todoList.innerHTML = "";
   for (var i = 0; i < old.length; i++) {
     if (old[i].isDone == false) {
-      list.innerHTML += `<li  class="todo__task" data-id="${old[i].id}">
+      todoList.innerHTML += `<li  class="todo__task" data-id="${old[i].id}">
                         <div class="todo__division">
                             <input type="checkbox" name="task" id="task${i}">
                             <label for="task${i}" class="todo__label">${old[i].content}</label>
@@ -93,15 +94,79 @@ function deleteItem(id) {
   localStorage.setItem("names", JSON.stringify(old))
 }
 
-// function complete(element) {
-//   var old = oldItems();
-//   for (var i = 0; i < old.length; i++) {
-//       if (old[i].id == element.parentElement.parentElement.dataset.id) {
-//           old[i].isDone = !old[i].isDone;
-//       }
-//   }
-//   localStorage.setItem("names", JSON.stringify(old));
-
-//   // showCompleteList();
-//   showUnComplete();
+// function editItem(element) {
+//   var newInput = document.createElement("input");
+//   newInput.setAttribute("type", "text");
+//   newInput.value = element.parentElement.parentElement.parentElement.children[0].children[1].innerText;
+ 
+//   element.parentElement.parentElement.parentElement.children[0].children[1].remove();
+//   console.log(element.parentElement.parentElement.parentElement.children[0]);
+//   element.parentElement.parentElement.parentElement.children[0].insertBefore(newInput, element.parentElement.parentElement.parentElement.children[0].firstchild)
+//   console.log( element.parentElement.parentElement.parentElement.children[0]);
+//   console.log(newInput );
+//   newInput.focus();
 // }
+function complete(element) {
+  var old = oldItems();
+  for (var i = 0; i < old.length; i++) {
+      if (old[i].id == element.parentElement.parentElement.dataset.id) {
+          old[i].isDone = !old[i].isDone;
+      }
+  }
+  localStorage.setItem("names", JSON.stringify(old));
+
+  showCompleteList();
+  showUnComplete();
+}
+
+// function saveEditedItem() {
+//   var editing = todoList.querySelector("input[type='text']");
+//   var old = oldItems();
+//   if (editing == null) {
+//       return [];
+//   } else {
+//       for (var i = 0; i < old.length; i++) {
+//           if (old[i].id == editing.parentElement.parentElement.parentElement.id) {
+//               old[i].content = editing.value;
+//           }
+//       }
+//       localStorage.setItem("names", JSON.stringify(old));
+//       closeEditingInput(editing);
+//   }
+// }
+
+// function closeEditingInput(element) {
+//   var newLabel = document.createElement("label");
+//   var newText = document.createTextNode(element.parentElement.parentElement.children[0].children[1].value);
+//   newLabel.htmlFor = element.parentElement.parentElement.children[0].children[0].id;
+//   newLabel.appendChild(newText);
+
+//   element.parentElement.parentElement.children[0].insertBefore(newLabel, element.parentElement.parentElement.children[0].lastchild)
+//   element.remove();
+// }
+
+function showCompleteList() {
+  var old = oldItems();
+  doneList.innerHTML = "";
+  for (var i = 0; i < old.length; i++) {
+      if (old[i].isDone == true) {
+
+          doneList.innerHTML += `<li data-id="${old[i].id}" class="todo__task" >
+                                          <div class="todo__division">
+                                          <input type="checkbox" name="item" id="item${i}" checked/>
+                                          <label for="item${i} 
+                                          class="todo__label">${old[i].content}         </label>
+                                          </div>
+                                          <div>
+                                          <a href="#" class="todo-main__icon"><i class="far fa-trash-alt"></i></a>
+                                      </div>
+      
+                                    </li>`;
+
+      }
+  }
+
+}
+
+
+

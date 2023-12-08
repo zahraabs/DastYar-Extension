@@ -105,6 +105,9 @@ display: inline-block;
     color: var(--temp-color);
     font-size: 14px;
 }
+.done__list .todo__task{
+    text-decoration: line-through;
+}
 
 /* programs */
 
