@@ -11,6 +11,7 @@ showCompleteList();
 toDoForm.addEventListener("submit", addItem);
 todoList.addEventListener("click", icons);
 doneList.addEventListener("click", icons);
+addEventListener("click", saveEditedItem);
 
 function addItem(e) {
   e.preventDefault();
@@ -31,8 +32,8 @@ function icons(e) {
   if (e.target.nodeName === "I" && e.target.classList.contains("fa-trash-alt")) {
     deleteItem(e.target.parentElement.parentElement.parentElement.dataset.id);
         e.target.parentElement.parentElement.parentElement.remove();
-  // } else if(e.target.classList.contains("fa-edit")) {
-  //   editItem(e.target);
+  } else if(e.target.classList.contains("fa-edit")) {
+    editItem(e.target);
   }else if (e.target.nodeName === "INPUT") {
     complete(e.target);
 }
@@ -94,18 +95,16 @@ function deleteItem(id) {
   localStorage.setItem("names", JSON.stringify(old))
 }
 
-// function editItem(element) {
-//   var newInput = document.createElement("input");
-//   newInput.setAttribute("type", "text");
-//   newInput.value = element.parentElement.parentElement.parentElement.children[0].children[1].innerText;
+function editItem(element) {
+  var newInput = document.createElement("input");
+  newInput.setAttribute("type", "text");
+  newInput.value = element.parentElement.parentElement.parentElement.children[0].children[1].innerText;
  
-//   element.parentElement.parentElement.parentElement.children[0].children[1].remove();
-//   console.log(element.parentElement.parentElement.parentElement.children[0]);
-//   element.parentElement.parentElement.parentElement.children[0].insertBefore(newInput, element.parentElement.parentElement.parentElement.children[0].firstchild)
-//   console.log( element.parentElement.parentElement.parentElement.children[0]);
-//   console.log(newInput );
-//   newInput.focus();
-// }
+  element.parentElement.parentElement.parentElement.children[0].children[1].remove();
+  element.parentElement.parentElement.parentElement.children[0].insertBefore(newInput, element.parentElement.parentElement.parentElement.children[0].lastchild)
+  newInput.focus();
+}
+
 function complete(element) {
   var old = oldItems();
   for (var i = 0; i < old.length; i++) {
@@ -119,31 +118,31 @@ function complete(element) {
   showUnComplete();
 }
 
-// function saveEditedItem() {
-//   var editing = todoList.querySelector("input[type='text']");
-//   var old = oldItems();
-//   if (editing == null) {
-//       return [];
-//   } else {
-//       for (var i = 0; i < old.length; i++) {
-//           if (old[i].id == editing.parentElement.parentElement.parentElement.id) {
-//               old[i].content = editing.value;
-//           }
-//       }
-//       localStorage.setItem("names", JSON.stringify(old));
-//       closeEditingInput(editing);
-//   }
-// }
+function saveEditedItem() {
+  var editing = todoList.querySelector("input[type='text']");
+  var old = oldItems();
+  if (editing == null) {
+      return [];
+  } else {
+      for (var i = 0; i < old.length; i++) {
+          if (old[i].id == editing.parentElement.parentElement.dataset.id) {
+              old[i].content = editing.value;
+          }
+      }
+      localStorage.setItem("names", JSON.stringify(old));
+      closeEditingInput(editing);
+  }
+}
 
-// function closeEditingInput(element) {
-//   var newLabel = document.createElement("label");
-//   var newText = document.createTextNode(element.parentElement.parentElement.children[0].children[1].value);
-//   newLabel.htmlFor = element.parentElement.parentElement.children[0].children[0].id;
-//   newLabel.appendChild(newText);
+function closeEditingInput(element) {
+  var newLabel = document.createElement("label");
+  var newText = document.createTextNode(element.parentElement.parentElement.children[0].children[1].value);
 
-//   element.parentElement.parentElement.children[0].insertBefore(newLabel, element.parentElement.parentElement.children[0].lastchild)
-//   element.remove();
-// }
+  newLabel.htmlFor = element.parentElement.parentElement.children[0].children[0].id;
+  newLabel.appendChild(newText);
+  element.parentElement.parentElement.children[0].insertBefore(newLabel, element.parentElement.parentElement.children[0].lastchild);
+  element.remove();
+}
 
 function showCompleteList() {
   var old = oldItems();
@@ -154,7 +153,7 @@ function showCompleteList() {
           doneList.innerHTML += `<li data-id="${old[i].id}" class="todo__task" >
                                           <div class="todo__division">
                                           <input type="checkbox" name="item" id="item${i}" checked/>
-                                          <label for="item${i} 
+                                          <label for="item${i}"
                                           class="todo__label">${old[i].content}         </label>
                                           </div>
                                           <div>
