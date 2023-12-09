@@ -40,9 +40,9 @@ function icons(e) {
 }
 
 function addToStorage(text) {
-  var currentNames = oldItems();
-  var date = new Date();
-  var newItem = {
+  let currentNames = oldItems();
+  let date = new Date();
+  let newItem = {
     id: date.getTime(),
     content: text,
     isDone: false,
@@ -54,7 +54,7 @@ function addToStorage(text) {
 
 // get old names and return an array
 function oldItems() {
-  var oldNames;
+  let oldNames;
   oldNames = JSON.parse(localStorage.getItem("names"));
 
   if (oldNames == null) {
@@ -64,16 +64,16 @@ function oldItems() {
 }
 
 function showUnComplete() {
-  var old = oldItems();
+  let old = oldItems();
   todoList.innerHTML = "";
-  for (var i = 0; i < old.length; i++) {
+  for (let i = 0; i < old.length; i++) {
     if (old[i].isDone == false) {
       todoList.innerHTML += `<li  class="todo__task" data-id="${old[i].id}">
                         <div class="todo__division">
                             <input type="checkbox" name="task" id="task${i}">
                             <label for="task${i}" class="todo__label">${old[i].content}</label>
                         </div>
-                        <div>
+                        <div >
                             <a href="#" class="todo-main__icon"><i class="fas fa-edit "></i></a>
                             <a href="#" class="todo-main__icon"><i class="far fa-trash-alt"></i></a>
                         </div>
@@ -84,9 +84,9 @@ function showUnComplete() {
 }
 
 function deleteItem(id) {
-  var old = oldItems();
-
-  for (var i = 0; i < old.length; i++) {
+  let old = oldItems();
+  // confirm("Are you sure?");
+  for (let i = 0; i < old.length; i++) {
       if (old[i].id == id) {
           old.splice(i, 1);
       }
@@ -96,7 +96,7 @@ function deleteItem(id) {
 }
 
 function editItem(element) {
-  var newInput = document.createElement("input");
+  let newInput = document.createElement("input");
   newInput.setAttribute("type", "text");
   newInput.value = element.parentElement.parentElement.parentElement.children[0].children[1].innerText;
  
@@ -106,8 +106,8 @@ function editItem(element) {
 }
 
 function complete(element) {
-  var old = oldItems();
-  for (var i = 0; i < old.length; i++) {
+  let old = oldItems();
+  for (let i = 0; i < old.length; i++) {
       if (old[i].id == element.parentElement.parentElement.dataset.id) {
           old[i].isDone = !old[i].isDone;
       }
@@ -119,12 +119,12 @@ function complete(element) {
 }
 
 function saveEditedItem() {
-  var editing = todoList.querySelector("input[type='text']");
-  var old = oldItems();
+  let editing = todoList.querySelector("input[type='text']");
+  let old = oldItems();
   if (editing == null) {
       return [];
   } else {
-      for (var i = 0; i < old.length; i++) {
+      for (let i = 0; i < old.length; i++) {
           if (old[i].id == editing.parentElement.parentElement.dataset.id) {
               old[i].content = editing.value;
           }
@@ -135,8 +135,8 @@ function saveEditedItem() {
 }
 
 function closeEditingInput(element) {
-  var newLabel = document.createElement("label");
-  var newText = document.createTextNode(element.parentElement.parentElement.children[0].children[1].value);
+  let newLabel = document.createElement("label");
+  let newText = document.createTextNode(element.parentElement.parentElement.children[0].children[1].value);
 
   newLabel.htmlFor = element.parentElement.parentElement.children[0].children[0].id;
   newLabel.appendChild(newText);
@@ -145,9 +145,9 @@ function closeEditingInput(element) {
 }
 
 function showCompleteList() {
-  var old = oldItems();
+  let old = oldItems();
   doneList.innerHTML = "";
-  for (var i = 0; i < old.length; i++) {
+  for (let i = 0; i < old.length; i++) {
       if (old[i].isDone == true) {
 
           doneList.innerHTML += `<li data-id="${old[i].id}" class="todo__task" >

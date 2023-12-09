@@ -53,7 +53,13 @@
     padding:8px;
 }
 
+.todo__list{
+    max-height: calc(100vh - 240px);
+    overflow: auto;
+}
+
 .todo__task{
+    max-width: 100%;
     margin-bottom: 5px;
     padding: 5px;
     display: flex;
@@ -63,10 +69,17 @@
 }
 
 .todo__division{
-    display: flex;align-items: center;
+    width: 50%;
+    display: flex;
+    align-items: center;
 }
 
 .todo__label{
+    max-width: 50%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
     color: var(--search-color);
 }
 
