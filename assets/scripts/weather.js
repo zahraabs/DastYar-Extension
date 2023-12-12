@@ -10,7 +10,6 @@ async function getWeatherData() {
   const response = await fetch(weatherApiUrl);
   let data = await response.json();
 
-  console.log(data[0]);
   currentWeather(data[0].current);
   currentWeatherText(data[0].customDescription.text, 1, 0);
   currentWeatherText(data[0].customDescription.emoji, 1, 1);

@@ -1,4 +1,5 @@
 "use strict";
+const toDoIcon = document.querySelector(".todo__visibility")
 const toDoForm = document.querySelector(".todo-form");
 const toDoInput = document.querySelector(".todo-form__input");
 const newToDo = document.querySelector(".todo-form__icon");
@@ -8,11 +9,26 @@ const doneList = document.querySelector(".done__list");
 showUnComplete();
 showCompleteList();
 
+toDoIcon.addEventListener("click" , toDoVisibility)
 toDoForm.addEventListener("submit", addItem);
 todoList.addEventListener("click", icons);
 doneList.addEventListener("click", icons);
 addEventListener("click", saveEditedItem);
 
+
+function toDoVisibility(e) {
+  const targetClass =e.target.classList;
+  const toDoListStyle = todoList.style;
+  if (targetClass.contains("fa-eye-slash")) {
+    targetClass.remove("fa-eye-slash");
+    targetClass.add("fa-eye");
+    toDoListStyle.filter = "blur(2px)"
+  } else if(targetClass.contains("fa-eye")){
+    targetClass.remove("fa-eye");
+    targetClass.add("fa-eye-slash");
+    toDoListStyle.filter = "unset"
+  }
+}
 function addItem(e) {
   e.preventDefault();
   const inputText = toDoInput.value.trim();
