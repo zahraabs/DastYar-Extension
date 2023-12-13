@@ -21,7 +21,7 @@ function timeSection() {
                         <select name="oghat" id="oghat">
                             <option value="oghat" selected>اوقات شرعی</option>
                         </select>
-                        </div>
+                    </div>
     `;
 }
 
@@ -57,3 +57,5 @@ function changeDate(day, month, year, i) {
   const formattedTime = `${day}/ ${month} /${year}`;
   time.children[3].children[i].innerHTML = formattedTime;
 }
+
+setInterval(getTime, 1000)
